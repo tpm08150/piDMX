@@ -16,10 +16,10 @@ from kivy.uix.slider import Slider
 from DMXEnttecPro import Controller
 import time
 
-#dmx = Controller('/dev/cu.usbserial-EN259682')  # Typical of Linux
-dmx = Controller('/dev/cu.usbserial-AL05O8ZE')  # Typical of Linux
+dmx = Controller('/dev/cu.usbserial-EN259682')  # Typical of Linux
+#dmx = Controller('/dev/cu.usbserial-AL05O8ZE')  # Typical of Linux
 
-
+Window.size = (1720, 1080)
 channelLow = 1
 channelHigh = 1
 fixture = 0
@@ -94,15 +94,15 @@ superCue4 = []
 superCueList = [superCue1, superCue2, superCue3, superCue4]
 
 
-def superCueRecording():
-    global x
-    x = 0
-    for i in superCueList:
-        if sCueRecord % 2 == 1 and sCue == x:
-            superCueList[x].append(cue)
-            if superCueList[x][0] == 10:
-                superCueList[x].pop(0)
-        x += 1
+# def superCueRecording():
+#     global x
+#     x = 0
+#     for i in superCueList:
+#         if sCueRecord % 2 == 1 and sCue == x:
+#             superCueList[x].append(cue)
+#             if superCueList[x][0] == 10:
+#                 superCueList[x].pop(0)
+#         x += 1
 
 class MyLayout(GridLayout):
     def __init__(self, **kwargs):
@@ -118,23 +118,23 @@ class MyLayout(GridLayout):
         self.textGrid.cols = 4
         self.textGrid.padding = 4
         self.textGrid.spacing = 2
-        self.textGrid.size_hint_y = .7
+        self.textGrid.size_hint_y = 0
         self.add_widget(self.textGrid)
 
-        self.red = TextInput(multiline=False, font_size=44)
-        self.textGrid.add_widget(self.red)
+        self.red = TextInput(multiline=False, font_size=20)
+        #self.textGrid.add_widget(self.red)
 
-        self.green = TextInput(multiline=False, font_size=44)
-        self.textGrid.add_widget(self.green)
+        self.green = TextInput(multiline=False, font_size=20)
+        #self.textGrid.add_widget(self.green)
 
-        self.blue = TextInput(multiline=False, font_size=44)
-        self.textGrid.add_widget(self.blue)
+        self.blue = TextInput(multiline=False, font_size=20)
+        #self.textGrid.add_widget(self.blue)
 
         self.colorGrid = GridLayout()
         self.colorGrid.cols = 9
         self.colorGrid.padding = 4
         self.colorGrid.spacing = 2
-        self.colorGrid.size_hint_y = .7
+        self.colorGrid.size_hint_y = .4
         self.add_widget(self.colorGrid)
 
         self.colorSaveButton = Button(text='Save Color', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
@@ -157,136 +157,112 @@ class MyLayout(GridLayout):
         self.colorGrid.add_widget(self.color4Button)
         self.color4Button.bind(on_press=self.color4)
 
-        self.transportGrid = GridLayout()
-        self.transportGrid.cols = 4
-        self.transportGrid.padding = 4
-        self.transportGrid.spacing = 2
-        self.transportGrid.size_hint_y = .7
-        self.add_widget(self.transportGrid)
+        # self.transportGrid = GridLayout()
+        # self.transportGrid.cols = 4
+        # self.transportGrid.padding = 4
+        # self.transportGrid.spacing = 2
+        # self.transportGrid.size_hint_y = .7
+        # self.add_widget(self.transportGrid)
+        #
+        # self.playButton = Button(text='Play', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
+        # self.transportGrid.add_widget(self.playButton)
+        # self.playButton.bind(on_press=self.play)
+        #
+        # self.stopButton = Button(text='Stop', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
+        # self.transportGrid.add_widget(self.stopButton)
+        # self.stopButton.bind(on_press=self.stop)
 
-        self.playButton = Button(text='Play', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.transportGrid.add_widget(self.playButton)
-        self.playButton.bind(on_press=self.play)
-
-        self.stopButton = Button(text='Stop', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.transportGrid.add_widget(self.stopButton)
-        self.stopButton.bind(on_press=self.stop)
-
-        self.channelGrid = GridLayout()
-        self.channelGrid.cols = 4
-        self.channelGrid.padding = 4
-        self.channelGrid.spacing = 2
-        self.channelGrid.size_hint_y = .7
-        self.add_widget(self.channelGrid)
-
-        self.setChannelButton = Button(text='Set Channel', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.setChannelButton)
-        self.setChannelButton.bind(on_press=self.setChannel)
-
-        self.saveButton = Button(text='Save', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.saveButton)
-        self.saveButton.bind(on_press=self.save)
-
-        self.channelLow = TextInput(multiline=False, font_size=44, size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.channelLow )
-
-        self.channelHigh = TextInput(multiline=False, font_size=44, size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.channelHigh)
+        # self.channelGrid = GridLayout()
+        # self.channelGrid.cols = 4
+        # self.channelGrid.padding = 4
+        # self.channelGrid.spacing = 2
+        # self.channelGrid.size_hint_y = .4
+        # self.add_widget(self.channelGrid)
+        #
+        # self.setChannelButton = Button(text='Set Channel', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
+        # self.channelGrid.add_widget(self.setChannelButton)
+        # self.setChannelButton.bind(on_press=self.setChannel)
+        #
+        # # self.saveButton = Button(text='Save', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
+        # # self.channelGrid.add_widget(self.saveButton)
+        # # self.saveButton.bind(on_press=self.save)
+        #
+        # self.channelLow = TextInput(multiline=False, font_size=44, size_hint_x=0.1, size_hint_y=0.1)
+        # self.channelGrid.add_widget(self.channelLow )
+        #
+        # self.channelHigh = TextInput(multiline=False, font_size=44, size_hint_x=0.1, size_hint_y=0.1)
+        # self.channelGrid.add_widget(self.channelHigh)
 
         self.cueGrid = GridLayout()
         self.cueGrid.cols = 4
         self.cueGrid.padding = 4
         self.cueGrid.spacing = 2
-        self.cueGrid.size_hint_y = .7
+        self.cueGrid.size_hint_y = .4
         self.add_widget(self.cueGrid)
 
 
         self.cue1Button = Button(text='Cue 1', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue1Button)
+        self.cueGrid.add_widget(self.cue1Button)
         self.cue1Button.bind(on_press=self.cue1)
 
         self.cue2Button = Button(text='Cue 2', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue2Button)
+        self.cueGrid.add_widget(self.cue2Button)
         self.cue2Button.bind(on_press=self.cue2)
 
         self.cue3Button = Button(text='Cue 3', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue3Button)
+        self.cueGrid.add_widget(self.cue3Button)
         self.cue3Button.bind(on_press=self.cue3)
 
         self.cue4Button = Button(text='Cue 4', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue4Button)
+        self.cueGrid.add_widget(self.cue4Button)
         self.cue4Button.bind(on_press=self.cue4)
 
+        self.cueGrid2 = GridLayout()
+        self.cueGrid2.cols = 4
+        self.cueGrid2.padding = 4
+        self.cueGrid2.spacing = 2
+        self.cueGrid2.size_hint_y = .4
+        self.add_widget(self.cueGrid2)
+
         self.cue5Button = Button(text='Cue 5', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue5Button)
+        self.cueGrid2.add_widget(self.cue5Button)
         self.cue5Button.bind(on_press=self.cue5)
 
         self.cue6Button = Button(text='Cue 6', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue6Button)
+        self.cueGrid2.add_widget(self.cue6Button)
         self.cue6Button.bind(on_press=self.cue6)
 
         self.cue7Button = Button(text='Cue 7', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue7Button)
+        self.cueGrid2.add_widget(self.cue7Button)
         self.cue7Button.bind(on_press=self.cue7)
 
         self.cue8Button = Button(text='Cue 8', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.channelGrid.add_widget(self.cue8Button)
+        self.cueGrid2.add_widget(self.cue8Button)
         self.cue8Button.bind(on_press=self.cue8)
-
-        self.superCueGrid = GridLayout()
-        self.superCueGrid.cols = 4
-        self.superCueGrid.padding = 4
-        self.superCueGrid.spacing = 2
-        self.superCueGrid.size_hint_y = .7
-        self.add_widget(self.superCueGrid)
-
-        self.superCueRecordButton = Button(text='Super Cue Record', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.superCueGrid.add_widget(self.superCueRecordButton)
-        self.superCueRecordButton.bind(on_press=self.superCueRecord)
-
-        self.superCueClearButton = Button(text='Super Cue Clear', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.superCueGrid.add_widget(self.superCueClearButton)
-        self.superCueClearButton.bind(on_press=self.superCueClear)
-
-        self.superCue1Button = Button(text='Super Cue 1', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.superCueGrid.add_widget(self.superCue1Button)
-        self.superCue1Button.bind(on_press=self.superCue1)
-
-        self.superCue2Button = Button(text='Super Cue 2', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.superCueGrid.add_widget(self.superCue2Button)
-        self.superCue2Button.bind(on_press=self.superCue2)
-
-        self.superCue3Button = Button(text='Super Cue 3', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.superCueGrid.add_widget(self.superCue3Button)
-        self.superCue3Button.bind(on_press=self.superCue3)
-
-        self.superCue4Button = Button(text='Super Cue 4', background_color='gray', size_hint_x=0.1, size_hint_y=0.1)
-        self.superCueGrid.add_widget(self.superCue4Button)
-        self.superCue4Button.bind(on_press=self.superCue4)
 
         self.color1(self)
 
         self.timing(self)
 
-    def play(self, instance):
-        global play
-        global p
-        global cue
-        global c
-        global beat
-        play += 1
-        beat += 1
-        c = 0
-        time.sleep(beat_length)
-
-
-
-    def stop(self, instance):
-        global play
-        global p
-        global beat
-        play = 0
-        beat = 0
+    # def play(self, instance):
+    #     global play
+    #     global p
+    #     global cue
+    #     global c
+    #     global beat
+    #     play += 1
+    #     beat += 1
+    #     c = 0
+    #     time.sleep(beat_length)
+    #
+    #
+    #
+    # def stop(self, instance):
+    #     global play
+    #     global p
+    #     global beat
+    #     play = 0
+    #     beat = 0
 
     def setChannel(self, instance):
         global channelLow
@@ -294,18 +270,18 @@ class MyLayout(GridLayout):
         global fixture
         global save
 
-        channelLow = self.channelLow.text
-        channelHigh = self.channelHigh.text
-        save = 1
+        channelLow = self.ids.fixLow.text
+        channelHigh = self.ids.fixHigh.text
+        save += 1
 
 
-    def save(self, instance):
-        global channelLow
-        global channelHigh
-        global fixture
-        global save
-
-        save = 0
+    # def save(self, instance):
+    #     global channelLow
+    #     global channelHigh
+    #     global fixture
+    #     global save
+    #
+    #     save = 0
 
     def colorSave(self, instance):
         global colorSave
@@ -358,66 +334,66 @@ class MyLayout(GridLayout):
     def cue1(self, instance):
         global cue
         cue = 0
-        superCueRecording()
+        # superCueRecording()
 
     def cue2(self, instance):
         global cue
         cue = 1
-        superCueRecording()
+        #superCueRecording()
 
     def cue3(self, instance):
         global cue
         cue = 2
-        superCueRecording()
+       # superCueRecording()
 
     def cue4(self, instance):
         global cue
         cue = 3
-        superCueRecording()
+        #superCueRecording()
 
     def cue5(self, instance):
         global cue
         cue = 4
-        superCueRecording()
+       # superCueRecording()
 
     def cue6(self, instance):
         global cue
         cue = 5
-        superCueRecording()
+        #superCueRecording()
 
     def cue7(self, instance):
         global cue
         cue = 6
-        superCueRecording()
+        #superCueRecording()
 
     def cue8(self, instance):
         global cue
         cue = 7
-        superCueRecording()
+       # superCueRecording()
 
-    def superCueRecord(self, instance):
-        global sCueRecord
-        sCueRecord += 1
-
-    def superCueClear(self, instance):
-        global sCue
-        superCueList[sCue].clear()
-
-    def superCue1(self, instance):
-        global sCue
-        sCue = 0
-
-    def superCue2(self, instance):
-        global sCue
-        sCue = 1
-
-    def superCue3(self, instance):
-        global sCue
-        sCue = 2
-
-    def superCue4(self, instance):
-        global sCue
-        sCue = 3
+    # def superCueRecord(self, instance):
+    #     global sCueRecord
+    #     sCueRecord += 1
+    #
+    # def superCueClear(self, instance):
+    #     global sCue
+    #     superCueList[sCue].clear()
+    #
+    # def superCue1(self, instance):
+    #     global sCue
+    #     sCue = 0
+    #
+    # def superCue2(self, instance):
+    #     global sCue
+    #     sCue = 1
+    #
+    # def superCue3(self, instance):
+    #     global sCue
+    #     sCue = 2
+    #
+    # def superCue4(self, instance):
+    #     global sCue
+    #     sCue = 3
 
     def slide_it_red(self, *args):
         self.red.text = str(int(args[1]))
@@ -444,6 +420,63 @@ class MyLayout(GridLayout):
             self.RGBinputRed.text = str(int(color8[0]))
             self.RGBinputGreen.text = str(int(color8[1]))
             self.RGBinputBlue.text = str(int(color8[2]))
+
+    def appendNumber(self, instance):
+        pass
+
+
+    def fixLow(self, instance):
+        global textInput
+        textInput = 1
+
+    def fixHigh(self, instance):
+        global textInput
+        textInput = 2
+
+    def buttonPress(self, button):
+        global prior
+        if textInput == 0:
+            prior = self.ids.fixChannels.text
+            if prior == 'Channels per Fixture':
+                self.ids.fixChannels.text = ''
+                self.ids.fixChannels.text = f'{button}'
+            else:
+                self.ids.fixChannels.text = f'{prior}{button}'
+        if textInput == 1:
+            prior = self.ids.fixLow.text
+            if prior == 'Fixture # Low':
+                self.ids.fixLow.text = ''
+                self.ids.fixLow.text = f'{button}'
+            else:
+                self.ids.fixLow.text = f'{prior}{button}'
+        if textInput == 2:
+            prior = self.ids.fixHigh.text
+            if prior == 'Fixture # High':
+                self.ids.fixHigh.text = ''
+                self.ids.fixHigh.text = f'{button}'
+            else:
+                self.ids.fixHigh.text = f'{prior}{button}'
+
+    def clear(self, instance):
+        if textInput == 0:
+            self.ids.fixChannels.text = 'Channels per Fixture'
+        if textInput == 1:
+            self.ids.fixLow.text = 'Fixture # Low'
+        if textInput == 2:
+            self.ids.fixHigh.text = 'Fixture # High'
+        pass
+
+    def delete(self, instance):
+        global prior
+        if textInput == 0:
+            prior = self.ids.fixChannels.text
+            self.ids.fixChannels.text = prior[0:len(prior)-1]
+        if textInput == 1:
+            prior = self.ids.fixLow.text
+            self.ids.fixLow.text = prior[0:len(prior)-1]
+        if textInput == 2:
+            prior = self.ids.fixHigh.text
+            self.ids.fixHigh.text = prior[0:len(prior)-1]
 
 
     def timing(self, instance):
@@ -492,21 +525,11 @@ class MyLayout(GridLayout):
             self.colorSaveButton.background_color = 'gray'
             self.colorSaveButton.text = 'Program Color\n       Button ' + str(color + 1)
 
-        if sCueRecord % 2 == 1:
-            self.superCueRecordButton.background_color = 'red'
-        else:
-            self.superCueRecordButton.background_color = 'gray'
+        # if sCueRecord % 2 == 1:
+        #     self.superCueRecordButton.background_color = 'red'
+        # else:
+        #     self.superCueRecordButton.background_color = 'gray'
 
-        if save == 0:
-            self.setChannelButton.background_color = 'gray'
-            x = 0
-            for i in allCuesList[cue]:
-                dmx.set_channel(3 * x + 1, allCuesList[cue][x][0])
-                dmx.set_channel(3 * x + 2, allCuesList[cue][x][1])
-                dmx.set_channel(3 * x + 3, allCuesList[cue][x][2])
-                x += 1
-
-            dmx.submit()
 
         x = 0
         cueListColors = [self.cue1Button, self.cue2Button, self.cue3Button, self.cue4Button, self.cue5Button, self.cue6Button, self.cue7Button, self.cue8Button]
@@ -518,23 +541,39 @@ class MyLayout(GridLayout):
             x += 1
 
         x = 0
-        superCueListColors = [self.superCue1Button, self.superCue2Button, self.superCue3Button, self.superCue4Button]
-        for i in superCueListColors:
-            if sCue == x:
-                superCueListColors[x].background_color = 'red'
-            else:
-                superCueListColors[x].background_color = 'gray'
-            x += 1
+        # superCueListColors = [self.superCue1Button, self.superCue2Button, self.superCue3Button, self.superCue4Button]
+        # for i in superCueListColors:
+        #     if sCue == x:
+        #         superCueListColors[x].background_color = 'red'
+        #     else:
+        #         superCueListColors[x].background_color = 'gray'
+        #     x += 1
 
-        if save == 1:
-            self.setChannelButton.background_color = 'red'
+        if save % 2 == 0:
+            x = 0
+            for i in allCuesList[cue]:
+                dmx.set_channel(3 * x + 1, allCuesList[cue][x][0])
+                dmx.set_channel(3 * x + 2, allCuesList[cue][x][1])
+                dmx.set_channel(3 * x + 3, allCuesList[cue][x][2])
+                x += 1
+
+            dmx.submit()
+        if save % 2 == 0:
+            self.ids.setChannel.background_color = 'gray'
+
+        if save % 2 == 1:
+            self.ids.setChannel.background_color = 'red'
             red = self.red.text
             green = self.green.text
             blue = self.blue.text
 
-            if channelLow != '':
+            if channelLow == '':
+                channelLow = 0
+            else:
                 channelLow = int(channelLow)
-            if channelHigh != '':
+            if channelHigh == '':
+                channelHigh = 0
+            else:
                 channelHigh = int(channelHigh)
             if red != '':
                 red = int(red)
@@ -571,7 +610,8 @@ class MyLayout(GridLayout):
                     # print(dmxNumber)
 
                     x += 1
-                dmx.submit()
+            dmx.submit()
+
         res = isinstance(self.red.text, int)
         ges = isinstance(self.green.text, int)
         bes = isinstance(self.blue.text, int)
@@ -596,20 +636,19 @@ class MyLayout(GridLayout):
             if int(self.blue.text) < 0:
                 self.ids.slider_blue.value = 0
 
-        if play % 2 == 0:
-            timingLoop = Clock.schedule_once(self.timing, .01)
-            self.playButton.background_color = 'gray'
-            s = 0
 
-        if play % 2 == 1:
-            timingLoop = Clock.schedule_once(self.timing, .125)
-            self.playButton.background_color = 'red'
-            if len(superCueList[sCue]) > 0:
-                cue = superCueList[sCue][c]
-                dmx.submit()
-                c += 1
-                if c == len(superCueList[sCue]):
-                    c = 0
+        timingLoop = Clock.schedule_once(self.timing, .01)
+
+        #
+        # if play % 2 == 1:
+        #     timingLoop = Clock.schedule_once(self.timing, .125)
+        #     self.playButton.background_color = 'red'
+        #     if len(superCueList[sCue]) > 0:
+        #         cue = superCueList[sCue][c]
+        #         dmx.submit()
+        #         c += 1
+        #         if c == len(superCueList[sCue]):
+        #             c = 0
 
 
 class MyApp(App):
