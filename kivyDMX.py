@@ -45,7 +45,7 @@ timeList = []
 s = 0
 average = 0
 beat = 0
-
+textInput = 0
 
 color1 = (0,0,0)
 color2 = (0,0,0)
